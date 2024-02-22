@@ -2,6 +2,12 @@ export default class Carrosel {
   constructor(slide, wrapper) {
     this.slide = document.querySelector(slide);
     this.wrapper = document.querySelector(wrapper);
+    this.dist = {
+      finalposition: 0,
+      startX: 0,
+      movement: 0,
+      movePosition: 0,
+    };
   }
   bindThis() {
     this.onStart = this.onStart.bind(this);
@@ -12,8 +18,8 @@ export default class Carrosel {
   onStart(event) {
     event.preventDefault();
     this.wrapper.addEventListener("mousemove", this.onMove);
-
-    console.log(event);
+    this.dist.startX = event.clientX;
+    console.log(`inicio: ${this.dist.startX}`);
   }
 
   addSlideEvent() {
@@ -22,13 +28,24 @@ export default class Carrosel {
     this.wrapper.addEventListener("mouseup", this.onEnd);
   }
 
-  onMove() {
-    console.log("moveu");
+  moveSlide(distX) {
+    this.movePosition = distX;
+    this.slide.style.transform = `translate3d(${-distX}px,0,0)`;
+    console.log(`fim ${distX}`);
+  }
+  updatePosition(clientX) {
+    this.dist.movement = this.dist.startX - clientX;
+    return this.dist.movement;
+  }
+
+  onMove(event) {
+    const finalposition = this.updatePosition(event.clientX);
+    this.moveSlide(finalposition);
   }
 
   onEnd() {
-    console.log("acabou");
     this.wrapper.removeEventListener("mousemove", this.onMove);
+    this.dist.finalposition = this.dist.movePosition;
   }
 
   init() {
