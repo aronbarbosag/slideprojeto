@@ -1,3 +1,3 @@
-import Carrosel from "./slide.js";
-const slideCarrosel = new Carrosel(".slide", ".wrapper");
+import Slide from "./slide.js";
+const slideCarrosel = new Slide(".slide", ".wrapper");
 slideCarrosel.init();
