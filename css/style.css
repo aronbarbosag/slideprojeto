@@ -22,7 +22,7 @@ li {
   max-width: 100%;
 }
 .slide li {
-  width: 40vw;
+  width: 80vh;
   max-width: 800px;
   margin: 0 20px;
   flex-shrink: 0;
