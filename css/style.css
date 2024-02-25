@@ -16,6 +16,9 @@ li {
 
   transform: translate3d(0, 0, 0);
 }
+.slide:hover {
+  will-change: transform;
+}
 
 .slide img {
   display: block;
@@ -26,4 +29,11 @@ li {
   max-width: 800px;
   margin: 0 20px;
   flex-shrink: 0;
+  opacity: 0.8;
+  transform: scale(0.8);
+  transition: 0.4s;
+}
+.slide li.active {
+  opacity: 1;
+  transform: scale(1);
 }
